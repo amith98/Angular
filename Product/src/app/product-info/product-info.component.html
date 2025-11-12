@@ -1,0 +1,9 @@
+<p>Product Name: {{productName}}</p>
+<p>Product Price: {{productPrice}}</p>
+<img [src] = "imagePath" alt="Internal Image" height="200px" width="200px"><br/>
+<button (click) = "onClick(productName)">Add to cart</button>
+<br><br>
+<input [(ngModel)]="productReview" placeholder="Enter your review">
+<p>Product Review:{{productReview}}</p>
+
+
