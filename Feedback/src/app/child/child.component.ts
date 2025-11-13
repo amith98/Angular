@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,EventEmitter,Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrl: './child.component.css'
 })
 export class ChildComponent {
+  @Input() data:string|any;
+
+  @Output() dataSent = new EventEmitter<string>();
+
+  sendData(){
+    this.dataSent.emit("Feedback received");
+
+  }
+
+  ngOnInit() {
+    console.log("onInit function from child called");
+  }
 
 }

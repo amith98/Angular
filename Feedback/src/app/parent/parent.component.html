@@ -1,1 +1,3 @@
-<p>parent works!</p>
+<p>User Feedback Data:</p>
+<input [(ngModel)] = "feedbackData" placeholder="User feedback data">
+<app-child [data] = "feedbackData" (dataSent)="onDataReceived($event)"></app-child>
