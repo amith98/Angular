@@ -6,5 +6,23 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'traffic-light';
+ currentLight = "";
+ textColor = "";
+
+ showRed(){
+  this.currentLight = "red";
+  this.textColor = "red";
+
+ }
+ showYellow() {
+  this.currentLight = "yellow";
+  this.textColor = "yellow";
+
+ }
+ showGreen() {
+  this.currentLight = "green";
+  this.textColor = "green";
+
+ }
+
 }
