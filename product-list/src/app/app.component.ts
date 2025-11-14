@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'product-list';
+  textColorRed = "red";
+  textColorGreen = "green";
+  availableProducts = true;
+  productList:any[] = [
+    {name: 'Milk', price: 20, onsale:true},
+    {name: 'Bread', price: 55, onsale:true },
+    {name: 'Torch', price: 600, onsale:false}
+  ];
 }
