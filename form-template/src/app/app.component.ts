@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'form-template';
+  
+   contact = {
+    name: '',
+    email: null,
+  };
+
+  onSubmit(formData: any) {
+    console.log('Form submitted:', formData);
+  }
 }
