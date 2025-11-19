@@ -1,0 +1,75 @@
+  <a routerLink="/view">Back</a>
+  <form (ngSubmit)="createProduct()" [formGroup]="createForm">
+
+    <div>
+      <label for="name">Product Name:</label>
+      <input
+        name="name"
+        id="name"
+        type="text"
+        formControlName="name"
+      />
+      <div
+        *ngIf="name!.invalid && (name!.dirty || name!.touched)"
+      >
+        <div *ngIf="name!.errors?.['required']">Product Name is required.</div>
+      </div>
+    </div>
+
+     <div>
+      <label for="price">Product Price:</label>
+      <input
+        name="price"
+        id="price"
+        type="text"
+        formControlName="price"
+      />
+      <div
+        *ngIf="price!.invalid && (price!.dirty || price!.touched)"
+      >
+        <div *ngIf="price!.errors?.['required']">Product Price is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="category">Product Category:</label>
+      <input
+        name="category"
+        id="category"
+        type="text"
+        formControlName="category"
+      />
+      <div
+        *ngIf="category!.invalid && (category!.dirty || category!.touched)"
+      >
+        <div *ngIf="category!.errors?.['required']">Product Category is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="quantity">Product Quantity:</label>
+      <input
+        name="quantity"
+        id="quantity"
+        type="text"
+        formControlName="quantity"
+      />
+      <div
+        *ngIf="quantity!.invalid && (quantity!.dirty || quantity!.touched)"
+      >
+        <div *ngIf="quantity!.errors?.['required']">Product Quantity is required.</div>
+      </div>
+    </div>
+
+
+
+   
+
+
+    <button
+      type="submit"
+      [disabled]="!createForm.valid"
+    >
+      Create Product
+    </button>
+  </form>
