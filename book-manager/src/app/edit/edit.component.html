@@ -1,0 +1,97 @@
+<div>
+  <h1>Update Book</h1>
+
+
+  <a routerLink="/view">Back</a>
+
+
+  <form (ngSubmit)="editBook()" [formGroup]="editForm">
+    <div>
+      <label for="prodId">Product Id:</label>
+      <input
+        name="prodId"
+        id="prodId"
+        type="text"
+        formControlName="prodId"
+      />
+      <div
+        *ngIf="prodId!.invalid && (prodId!.dirty || prodId!.touched)"
+      >
+        <div *ngIf="prodId!.errors?.['required']">Product ID is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="title">Name:</label>
+      <input
+        name="title"
+        id="title"
+        type="text"
+        formControlName="title"
+      />
+      <div
+        *ngIf="title!.invalid && (title!.dirty || title!.touched)"
+      >
+        <div *ngIf="title!.errors?.['required']">Name is required.</div>
+      </div>
+    </div>
+
+     <div>
+      <label for="author">Author:</label>
+      <input
+        name="author"
+        id="author"
+        type="text"
+        formControlName="author"
+      />
+      <div
+        *ngIf="author!.invalid && (author!.dirty || author!.touched)"
+      >
+        <div *ngIf="author!.errors?.['required']">Author is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="published_year">Published Year:</label>
+      <input
+        name="published_year"
+        id="published_year"
+        type="text"
+        formControlName="published_year"
+      />
+      <div
+        *ngIf="published_year!.invalid && (published_year!.dirty || published_year!.touched)"
+      >
+        <div *ngIf="published_year!.errors?.['required']">Published Year is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="genre">Genre:</label>
+      <input
+        name="genre"
+        id="genre"
+        type="text"
+        formControlName="genre"
+      />
+      <div
+        *ngIf="genre!.invalid && (genre!.dirty || genre!.touched)"
+      >
+        <div *ngIf="genre!.errors?.['required']">Genre is required.</div>
+      </div>
+    </div>
+
+
+
+   
+
+
+    <button
+      type="submit"
+      [disabled]="!editForm.valid"
+    >
+      Update
+    </button>
+  </form>
+</div>
+<router-outlet></router-outlet>

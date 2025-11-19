@@ -1,0 +1,72 @@
+  <a routerLink="/view">Back</a>
+  <form (ngSubmit)="createBook()" [formGroup]="createForm">
+
+    <div>
+      <label for="title">Name:</label>
+      <input
+        name="title"
+        id="title"
+        type="text"
+        formControlName="title"
+      />
+      <div
+        *ngIf="title!.invalid && (title!.dirty || title!.touched)"
+      >
+        <div *ngIf="title!.errors?.['required']">Book Name is required.</div>
+      </div>
+    </div>
+
+     <div>
+      <label for="author">Author:</label>
+      <input
+        name="author"
+        id="author"
+        type="text"
+        formControlName="author"
+      />
+      <div
+        *ngIf="author!.invalid && (author!.dirty || author!.touched)"
+      >
+        <div *ngIf="author!.errors?.['required']">Author is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="published_year">Published Year:</label>
+      <input
+        name="published_year"
+        id="published_year"
+        type="text"
+        formControlName="published_year"
+      />
+      <div
+        *ngIf="published_year!.invalid && (published_year!.dirty || published_year!.touched)"
+      >
+        <div *ngIf="published_year!.errors?.['required']">Published Year is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="genre">Genre:</label>
+      <input
+        name="genre"
+        id="genre"
+        type="text"
+        formControlName="genre"
+      />
+      <div
+        *ngIf="genre!.invalid && (genre!.dirty || genre!.touched)"
+      >
+        <div *ngIf="genre!.errors?.['required']">Genreis required.</div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!createForm.valid"
+    >
+      Create Book
+    </button>
+  </form>
+  <router-outlet></router-outlet>
+
