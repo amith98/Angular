@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'custom-pipe';
+  numArray: number[] = [1,2,3,4,5,6,7,8,9,10];
 }
