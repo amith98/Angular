@@ -1,0 +1,149 @@
+<button class="btn btn-outline-danger my-2 my-sm-0 mx-3" type="submit" (click)="addWeight()">Add Weight</button>
+<button class="btn btn-outline-danger my-2 my-sm-0 mx-3" type="submit" (click)="weightDiff()">Weight Difference</button>
+<button class="btn btn-outline-success my-2 my-sm-0 mx-3" type="submit" (click)="logout()">Logout</button>
+<div *ngIf="showInputDiv && showInputDivInitial">
+    <form (ngSubmit)="addWeightData()" [formGroup]="weightForm">
+        <div class="row">
+            <div class="form-group col-4 mt-4 mx-3">
+                <label for="weightValue">Enter Weight</label>
+                <input type="text" name="weightValue" id="weightValue" class="form-control"
+                    formControlName="weightValue" />
+            </div>
+            <div class="col-md-3 mt-5">
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+<div *ngIf="showWeightDiff">
+    <form (ngSubmit)="calWeightDiff()" [formGroup]="weightDiffForm">
+        <div class="row">
+            <div class="form-group col-3 mt-4 mx-2">
+                <label for="firstDateValue">First Date</label>
+                <input type="date" name="firstDateValue" id="firstDateValue" class="form-control"
+                    formControlName="firstDateValue" />
+            </div>
+            <div class="form-group col-3 mt-4 mx-2">
+                <label for="secondDateValue">Second Date</label>
+                <input type="date" name="secondDateValue" id="secondDateValue" class="form-control"
+                    formControlName="secondDateValue" />
+            </div>
+            <div class="form-group col-3 mt-4 mx-2">
+                <label for="weightDifference">Weight Difference</label>
+                <input type="text" name="weightDifference" id="weightDifference" class="form-control"
+                    formControlName="weightDifference" />
+            </div>
+            <div class="col-md-3 mt-5">
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+                <button type="submit" class="btn btn-danger mx-3" (click)="closeWeightDiff()">
+                    Close
+                </button>
+            </div>
+
+
+        </div>
+
+    </form>
+
+</div>
+<div *ngIf="!showInputDiv" class="text-danger">
+    Can only add 1 weight per day.
+</div>
+
+<div class="mt-4">
+    <h2>Weight Data</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of paginatedData;let i = index">
+                <td>{{item.currentDate}}</td>
+                <td>{{item.currentTime}}</td>
+                <td>{{item.weight}}</td>
+                <td>
+                    <button class="btn btn-outline-info" (click)="edit(i)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger" (click)="showConfirm(i)">Delete</button>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <!-- Pagination Controls -->
+    <div class="mt-2 text-center">
+        <button (click)="changePage(page - 1)" [disabled]="page === 1">Prev</button>
+
+        <span *ngFor="let p of [].constructor(totalPages()); let idx = index">
+            <button (click)="changePage(idx + 1)" [style.font-weight]="page === idx + 1 ? 'bold' : ''">
+                {{ idx + 1 }}
+            </button>
+        </span>
+
+        <button (click)="changePage(page + 1)" [disabled]="page === totalPages()">Next</button>
+    </div>
+</div>
+
+<div *ngIf="editFormVisible">
+    <form (ngSubmit)="editWeightData()" [formGroup]="editForm">
+        <div class="row">
+            <div class="form-group col-4 mt-3 mx-2">
+                <label for="editWeightValue">Modify Weight</label>
+                <input type="text" name="editWeightValue" id="editWeightValue" class="form-control"
+                    formControlName="editWeightValue" />
+            </div>
+            <div class="col-md-1 col-4 mt-5 mx-1">
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+            </div>
+            <div class="col-md-1 col-4 mt-5 mx-1">
+                <button type="submit" class="btn btn-danger" (click)="editFormClose()">
+                    Close
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Confirmation Modal  -->
+<div class="modal fade show" *ngIf="isModalOpen" 
+     style="display: block; background: rgba(0,0,0,0.5);">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        Are you sure you want to delete this record?
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
